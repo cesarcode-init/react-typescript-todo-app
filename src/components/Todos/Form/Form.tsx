@@ -1,6 +1,7 @@
 import { useState, useContext } from 'react';
 
 import TodoInput from './TodoInput/TodoInput';
+import TodoList from './TodoList/TodoList';
 
 import { TodosContext } from 'contexts/TodosContext';
 
@@ -46,6 +47,8 @@ const Form = (): JSX.Element => {
       <TodoInput input={input} action={handleInputChange} />
 
       {error && <small className={styles.error}>{error}</small>}
+
+      <TodoList />
     </form>
   );
 };

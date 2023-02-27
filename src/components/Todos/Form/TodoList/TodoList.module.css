@@ -1,0 +1,114 @@
+/* ListTasks Component */
+
+.list {
+    padding: 0;
+    max-width: 370px;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.empty {
+    color: var(--gray-color-x6);
+    font-size: 0.9em;
+}
+
+/* Task Component */
+
+.item {
+    background: var(--black-color-x5);
+    margin-bottom: 8px;
+    padding-left: 16px;
+    padding-right: 16px;
+    list-style: none;
+    position: relative;
+    border-radius: 4px;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    word-break: break-all;
+}
+
+.item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    border: 0.5px solid var(--blue-color-x9);
+    border-radius: 3px;
+    opacity: 0;
+    transition: opacity 0.2s linear;
+    pointer-events: none;
+}
+
+.item:hover.item::before {
+    opacity: .7;
+}
+
+.crossed {
+    text-decoration: line-through;
+    color: var(--gray-color-x3);
+    user-select: none;
+    cursor: pointer;
+}
+
+.uncrossed {
+    text-decoration: none;
+    color: var(--white-color-x0);
+    user-select: none;
+    cursor: pointer;
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.icons span:first-of-type,
+.icons span:last-of-type {
+    width: 25px;
+    height: 25px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.1s ease;
+    cursor: pointer;
+}
+
+.icons span:first-of-type:hover,
+.icons span:last-of-type:hover {
+    background: var(--black-color-x7);
+}
+
+.delete {
+    color: var(--red-color-x1);
+}
+
+.edit {
+    color: var(--blue-color-x10);
+}
+
+.clicks {
+    padding: 0.1em;
+    background: var(--black-color-x8);
+    outline: none;
+}
+
+.clicks:hover {
+    background: var(--black-color-x9)
+}
+
+.disabled_block {
+    padding: 0.1em;
+    background: var(--gray-color-x4);
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+.disabled_edit {
+    color: var(--gray-color-x5)
+}
