@@ -31,6 +31,18 @@ const Todo = ({ todo, setError }: Props): JSX.Element => {
     setError(null);
   };
 
+  const handleCompleteTodo = (id: number) => {
+    context?.actions.completeTodo(id);
+
+    context?.states.editMode.setEditMode({
+      status: false,
+      payload: {
+        _id: null,
+        todo: null,
+      },
+    });
+  };
+
   return (
     <li className={styles.item}>
       <p
@@ -38,6 +50,7 @@ const Todo = ({ todo, setError }: Props): JSX.Element => {
           paddingRight: '10px',
         }}
         className={todo.completed ? styles.crossed : styles.uncrossed}
+        onDoubleClick={() => handleCompleteTodo(todo._id)}
       >
         {todo.todo}
       </p>

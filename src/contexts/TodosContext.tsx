@@ -29,6 +29,7 @@ const enum ACTION_TYPES {
   ADD_TODO,
   DELETE_TODO,
   UPDATE_TODO,
+  COMPLETE_TODO,
 }
 
 type State = ArrayOfType<Todo>;
@@ -48,7 +49,7 @@ type Action =
       };
     }
   | {
-      type: ACTION_TYPES.DELETE_TODO;
+      type: ACTION_TYPES.DELETE_TODO | ACTION_TYPES.COMPLETE_TODO;
       payload: {
         _id: number;
       };
@@ -66,6 +67,7 @@ interface Actions {
   createTodo: (todo: string) => void;
   deleteTodo: (id: number) => void;
   updateTodo: (id: number, todo: string) => void;
+  completeTodo: (id: number) => void;
 }
 
 const initialState: State = [];
@@ -92,6 +94,17 @@ const reducer = (state: State, { type, payload }: Action) => {
 
     case ACTION_TYPES.DELETE_TODO:
       return state.filter((todo) => todo._id !== payload._id);
+
+    case ACTION_TYPES.COMPLETE_TODO:
+      return state.map((todo) => {
+        if (todo._id === payload._id) {
+          return {
+            ...todo,
+            completed: !todo.completed,
+          };
+        }
+        return todo;
+      });
 
     default:
       return state;
@@ -159,7 +172,16 @@ export const ProvideTodos = ({ children }: TodosProviderType): JSX.Element => {
     dispatch(action);
   };
 
-  const actions: Actions = { createTodo, deleteTodo, updateTodo };
+  const completeTodo = (id: number): void => {
+    const action: Action = {
+      type: ACTION_TYPES.COMPLETE_TODO,
+      payload: { _id: id },
+    };
+
+    dispatch(action);
+  };
+
+  const actions: Actions = { createTodo, deleteTodo, updateTodo, completeTodo };
 
   const states = {
     editMode: { editMode, setEditMode },
