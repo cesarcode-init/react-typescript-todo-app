@@ -54,3 +54,13 @@ body {
   background: #111827;
   color: white;
 }
+
+a {
+  text-decoration: none;
+  color: var(--white-color-x0);
+}
+
+table, th, td {
+  border: 0.1px dotted rgb(241 245 249);
+  border-collapse: collapse;
+}
