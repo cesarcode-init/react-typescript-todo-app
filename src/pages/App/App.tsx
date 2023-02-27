@@ -1,9 +1,7 @@
-function App() {
-  return (
-    <div>
-      <p>hello, there!</p>
-    </div>
-  );
-}
+import Todos from '../../components/Todos/Todos';
+
+const App = (): JSX.Element => {
+  return <Todos />;
+};
 
 export default App;
