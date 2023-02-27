@@ -1,0 +1,33 @@
+.form {
+    max-width: 384px;
+}
+
+.input {
+    width: 90%;
+    padding: 14px 12px;
+    font-size: 0.9em;
+    border-radius: 3px;
+    border: 0.1px solid var(--black-color-x10);
+    transition: offset 0.2s linear;
+    background: var(--black-color-x11);
+    color: var(--white-color-x0);
+    position: relative;
+    padding: 0.6rem 0.75rem;
+    background: var(--black-color-x12);
+}
+
+.input:focus {
+    outline-width: 2px;
+    outline-style: solid;
+    border-radius: 3px;
+    position: relative;
+    outline-offset: 1px;
+    outline-color: var(--blue-color-x11);
+    transition: all 0.1s ease;
+}
+
+.error {
+    color: var(--red-color-x0);
+    display: block;
+    margin-top: 15px;
+}
