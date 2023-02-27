@@ -6,6 +6,7 @@ import TodoList from './TodoList/TodoList';
 import { TodosContext } from 'contexts/TodosContext';
 
 import styles from './Form.module.css';
+import Tracker from './Tracker/Tracker';
 
 const Form = (): JSX.Element => {
   const context = useContext(TodosContext);
@@ -87,6 +88,8 @@ const Form = (): JSX.Element => {
       <TodoInput input={input} action={handleInputChange} />
 
       {error && <small className={styles.error}>{error}</small>}
+
+      <Tracker />
 
       <TodoList setError={setError} />
     </form>

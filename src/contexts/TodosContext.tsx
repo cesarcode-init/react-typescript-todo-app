@@ -1,4 +1,4 @@
-import { createContext, useReducer, useState } from 'react';
+import { createContext, useReducer, useState, useEffect } from 'react';
 
 export const TodosContext = createContext<Context>(null);
 
@@ -10,6 +10,7 @@ type Context = {
       editMode: EditModeType;
       setEditMode: React.Dispatch<React.SetStateAction<EditModeType>>;
     };
+    completedTodos: ArrayOfType<Todo>;
   };
 } | null;
 
@@ -181,10 +182,17 @@ export const ProvideTodos = ({ children }: TodosProviderType): JSX.Element => {
     dispatch(action);
   };
 
+  useEffect(() => {
+    const completedTodos = state.filter((todo) => todo.completed);
+
+    setCompletedTodos(completedTodos);
+  }, [state]);
+
   const actions: Actions = { createTodo, deleteTodo, updateTodo, completeTodo };
 
   const states = {
     editMode: { editMode, setEditMode },
+    completedTodos: completedTodos,
   };
 
   const values: Context = {

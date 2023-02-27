@@ -1,0 +1,14 @@
+.blocks {
+    display: block;
+    margin-top: 20px;
+    font-size: small;
+    color: var(--gray-color-x6);
+    user-select: none;
+}
+
+.counter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 95%;
+}
