@@ -30,6 +30,13 @@ type Action =
       };
     }
   | {
+      type: ACTION_TYPES.UPDATE_TODO;
+      payload: {
+        _id: number;
+        todo: string;
+      };
+    }
+  | {
       type: ACTION_TYPES.DELETE_TODO;
       payload: {
         _id: number;
@@ -49,6 +56,17 @@ const reducer = (state: State, { type, payload }: Action) => {
           completed: false,
         },
       ];
+
+    case ACTION_TYPES.UPDATE_TODO:
+      return state.map((todo) => {
+        if (todo._id === payload._id) {
+          todo.todo = payload.todo;
+        }
+        return todo;
+      });
+
+    case ACTION_TYPES.DELETE_TODO:
+      return state.filter((todo) => todo._id !== payload._id);
 
     default:
       return state;
