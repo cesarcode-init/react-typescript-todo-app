@@ -1,6 +1,10 @@
 import { createContext, useReducer } from 'react';
 
-export const TodosContext = createContext(null);
+export const TodosContext = createContext<Context>(null);
+
+type Context = {
+  state: ArrayOfType<Todo>;
+} | null;
 
 type TodosProviderType = {
   children: React.ReactNode;
@@ -76,5 +80,11 @@ const reducer = (state: State, { type, payload }: Action) => {
 export const ProvideTodos = ({ children }: TodosProviderType): JSX.Element => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  return <TodosContext.Provider value={null}>{children}</TodosContext.Provider>;
+  const values: Context = {
+    state,
+  };
+
+  return (
+    <TodosContext.Provider value={values}>{children}</TodosContext.Provider>
+  );
 };
