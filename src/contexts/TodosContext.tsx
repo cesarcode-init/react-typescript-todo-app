@@ -1,10 +1,16 @@
-import { createContext, useReducer } from 'react';
+import { createContext, useReducer, useState } from 'react';
 
 export const TodosContext = createContext<Context>(null);
 
 type Context = {
   state: ArrayOfType<Todo>;
   actions: Actions;
+  states: {
+    editMode: {
+      editMode: EditModeType;
+      setEditMode: React.Dispatch<React.SetStateAction<EditModeType>>;
+    };
+  };
 } | null;
 
 type TodosProviderType = {
@@ -48,8 +54,18 @@ type Action =
       };
     };
 
+type EditModeType = {
+  status: boolean;
+  payload: {
+    _id: number | null;
+    todo: string | null;
+  };
+};
+
 interface Actions {
   createTodo: (todo: string) => void;
+  deleteTodo: (id: number) => void;
+  updateTodo: (id: number, todo: string) => void;
 }
 
 const initialState: State = [];
@@ -85,6 +101,24 @@ const reducer = (state: State, { type, payload }: Action) => {
 export const ProvideTodos = ({ children }: TodosProviderType): JSX.Element => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  const [editMode, setEditMode] = useState((): EditModeType => {
+    const ret = {
+      status: false,
+      payload: {
+        _id: null,
+        todo: null,
+      },
+    };
+    return ret;
+  });
+
+  const [completedTodos, setCompletedTodos] = useState(
+    (): ArrayOfType<Todo> => {
+      const ret: ArrayOfType<Todo> = [];
+      return ret;
+    }
+  );
+
   const createTodo = (todo: string): void => {
     const action: Action = {
       type: ACTION_TYPES.ADD_TODO,
@@ -94,11 +128,47 @@ export const ProvideTodos = ({ children }: TodosProviderType): JSX.Element => {
     dispatch(action);
   };
 
-  const actions: Actions = { createTodo };
+  const deleteTodo = (id: number): void => {
+    const action: Action = {
+      type: ACTION_TYPES.DELETE_TODO,
+      payload: {
+        _id: id,
+      },
+    };
+
+    dispatch(action);
+
+    setEditMode({
+      status: false,
+      payload: {
+        _id: null,
+        todo: null,
+      },
+    });
+  };
+
+  const updateTodo = (id: number, todo: string): void => {
+    const action: Action = {
+      type: ACTION_TYPES.UPDATE_TODO,
+      payload: {
+        _id: id,
+        todo,
+      },
+    };
+
+    dispatch(action);
+  };
+
+  const actions: Actions = { createTodo, deleteTodo, updateTodo };
+
+  const states = {
+    editMode: { editMode, setEditMode },
+  };
 
   const values: Context = {
     state,
     actions,
+    states,
   };
 
   return (

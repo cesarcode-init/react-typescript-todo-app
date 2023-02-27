@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 
 import TodoInput from './TodoInput/TodoInput';
 import TodoList from './TodoList/TodoList';
@@ -28,19 +28,59 @@ const Form = (): JSX.Element => {
     setInput(value);
   };
 
+  const handleUpdateTodo = (id: number, todo: string) => {
+    context?.actions.updateTodo(id, todo);
+  };
+
   const handleFormSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
     if (!input.trim().length) {
       setError('Enter a task.');
+      return false;
     }
 
-    if (input.trim().length) {
+    if (
+      context?.states.editMode.editMode.status &&
+      context.states.editMode.editMode.payload._id
+    ) {
+      const { states } = context;
+      const { editMode } = states;
+
+      handleUpdateTodo(editMode.editMode.payload._id!, input);
+
+      setError(null);
+    } else {
       setError(null);
 
       context?.actions.createTodo(input);
     }
+
+    context?.states.editMode.setEditMode({
+      status: false,
+      payload: { _id: null, todo: null },
+    });
+
+    setInput('');
   };
+
+  useEffect(() => {
+    if (context?.states.editMode.editMode.status) {
+      setInput(context.states.editMode.editMode.payload.todo!);
+    }
+  }, [context?.states.editMode]);
+
+  useEffect(() => {
+    if (!context?.states.editMode.editMode.status) {
+      setInput('');
+    }
+  }, [context?.states.editMode.editMode.status]);
+
+  useEffect(() => {
+    if (input.trim().length > 0) {
+      setError('');
+    }
+  }, [input, setError]);
 
   return (
     <form onSubmit={handleFormSubmit} className={styles.form}>
@@ -48,7 +88,7 @@ const Form = (): JSX.Element => {
 
       {error && <small className={styles.error}>{error}</small>}
 
-      <TodoList />
+      <TodoList setError={setError} />
     </form>
   );
 };
