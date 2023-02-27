@@ -4,6 +4,7 @@ export const TodosContext = createContext<Context>(null);
 
 type Context = {
   state: ArrayOfType<Todo>;
+  actions: Actions;
 } | null;
 
 type TodosProviderType = {
@@ -47,6 +48,10 @@ type Action =
       };
     };
 
+interface Actions {
+  createTodo: (todo: string) => void;
+}
+
 const initialState: State = [];
 
 const reducer = (state: State, { type, payload }: Action) => {
@@ -80,8 +85,20 @@ const reducer = (state: State, { type, payload }: Action) => {
 export const ProvideTodos = ({ children }: TodosProviderType): JSX.Element => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  const createTodo = (todo: string): void => {
+    const action: Action = {
+      type: ACTION_TYPES.ADD_TODO,
+      payload: { todo },
+    };
+
+    dispatch(action);
+  };
+
+  const actions: Actions = { createTodo };
+
   const values: Context = {
     state,
+    actions,
   };
 
   return (
