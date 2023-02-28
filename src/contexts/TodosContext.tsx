@@ -1,5 +1,7 @@
 import { createContext, useReducer, useState, useEffect } from 'react';
 
+import { getLocalStorage, setLocalStorage } from 'utils/services/helpers';
+
 export const TodosContext = createContext<Context>(null);
 
 type Context = {
@@ -117,7 +119,9 @@ const reducer = (state: State, { type, payload }: Action) => {
 };
 
 export const ProvideTodos = ({ children }: TodosProviderType): JSX.Element => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, initialState, (): any => {
+    return getLocalStorage('todos') ? getLocalStorage('todos') : initialState;
+  });
 
   const [editMode, setEditMode] = useState((): EditModeType => {
     const ret = {
@@ -195,6 +199,10 @@ export const ProvideTodos = ({ children }: TodosProviderType): JSX.Element => {
     const completedTodos = state.filter((todo) => todo.completed);
 
     setCompletedTodos(completedTodos);
+  }, [state]);
+
+  useEffect(() => {
+    setLocalStorage('todos', state);
   }, [state]);
 
   const actions: Actions = { createTodo, deleteTodo, updateTodo, completeTodo };
