@@ -6,7 +6,7 @@
 ![GitHub deployments](https://img.shields.io/github/deployments/cesarcode-init/react-typescript-todo-app/github-pages)
 [![GitHub license](https://img.shields.io/github/license/cesarcode-init/react-typescript-todo-app)](https://github.com/cesarcode-init/react-typescript-todo-app/blob/main/LICENSE)
 
-This project contains a simple Todo Application.
+This project contains a simple Todo Application. It allows users to create, read, update and edit todos.
 
 ## Table of Contents
 
@@ -18,7 +18,7 @@ This project contains a simple Todo Application.
 
 ## Demonstration
 
-<p><img align="center" src="https://github.com/cesarcode-init/google-search-clone/blob/main/demo.gif" alt="google search clone demonstration" width="500" height="500" /></p>
+<p><img align="center" src="https://github.com/cesarcode-init/react-typescript-todo-app/blob/master/demo.gif" alt="todo application demonstration" width="500" height="500" /></p>
 
 ## Prerequisites
 
