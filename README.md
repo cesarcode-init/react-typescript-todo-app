@@ -18,7 +18,7 @@ This project contains a simple Todo Application. It allows users to create, read
 
 ## Demonstration
 
-<p><img align="center" src="https://github.com/cesarcode-init/react-typescript-todo-app/blob/master/demo.gif" alt="todo application demonstration" width="900" height="500" /></p>
+<p><img align="center" src="https://github.com/cesarcode-init/react-typescript-todo-app/blob/master/demo.gif" alt="todo application demonstration" width="900" height="300" /></p>
 
 ## Prerequisites
 
