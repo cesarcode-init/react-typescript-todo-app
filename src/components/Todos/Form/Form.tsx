@@ -16,11 +16,6 @@ const Form = (): JSX.Element => {
     return ret;
   });
 
-  const [error, setError] = useState<null | string>((): null => {
-    const ret = null;
-    return ret;
-  });
-
   const handleInputChange = ({
     target,
   }: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,7 +32,7 @@ const Form = (): JSX.Element => {
     evt.preventDefault();
 
     if (!input.trim().length) {
-      setError('Enter a task.');
+      context?.states.errorState.setError('Enter a task.');
       return false;
     }
 
@@ -50,9 +45,9 @@ const Form = (): JSX.Element => {
 
       handleUpdateTodo(editMode.editMode.payload._id!, input);
 
-      setError(null);
+      context?.states.errorState.setError(null);
     } else {
-      setError(null);
+      context?.states.errorState.setError(null);
 
       context?.actions.createTodo(input);
     }
@@ -79,9 +74,9 @@ const Form = (): JSX.Element => {
 
   useEffect(() => {
     if (input.trim().length > 0) {
-      setError('');
+      context?.states.errorState.setError('');
     }
-  }, [input, setError]);
+  }, [input, context?.states.errorState]);
 
   return (
     <form onSubmit={handleFormSubmit} className={styles.form}>
@@ -89,7 +84,11 @@ const Form = (): JSX.Element => {
         <TodoInput input={input} action={handleInputChange} />
       </div>
 
-      {error && <small className={styles.error}>{error}</small>}
+      {context?.states.errorState.error && (
+        <small className={styles.error}>
+          {context?.states.errorState.error}
+        </small>
+      )}
 
       <Tracker />
 

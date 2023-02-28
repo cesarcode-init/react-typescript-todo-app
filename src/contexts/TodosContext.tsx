@@ -11,6 +11,10 @@ type Context = {
       setEditMode: React.Dispatch<React.SetStateAction<EditModeType>>;
     };
     completedTodos: ArrayOfType<Todo>;
+    errorState: {
+      error: string | null;
+      setError: React.Dispatch<React.SetStateAction<null | string>>;
+    };
   };
 } | null;
 
@@ -133,6 +137,11 @@ export const ProvideTodos = ({ children }: TodosProviderType): JSX.Element => {
     }
   );
 
+  const [error, setError] = useState<null | string>((): null => {
+    const ret = null;
+    return ret;
+  });
+
   const createTodo = (todo: string): void => {
     const action: Action = {
       type: ACTION_TYPES.ADD_TODO,
@@ -193,6 +202,7 @@ export const ProvideTodos = ({ children }: TodosProviderType): JSX.Element => {
   const states = {
     editMode: { editMode, setEditMode },
     completedTodos: completedTodos,
+    errorState: { error, setError },
   };
 
   const values: Context = {
