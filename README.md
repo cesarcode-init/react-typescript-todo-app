@@ -24,6 +24,34 @@ This project contains a simple Todo Application. It allows users to create, read
 
 ## Getting Started
 
+It is required to clone or fork this project to get started.
+
+Clone this project by running the following command:
+
+```bash
+git clone https://github.com/cesarcode-init/react-typescript-todo-app.git
+```
+
+Then change directory:
+
+```bash
+cd react-typescript-todo-app
+```
+
+The application depends on multiple [npm packages](https://www.npmjs.com/). To install these dependencies, run `npm i` or `npm install`.
+
+```bash
+npm install
+```
+
+To open the application in the browser, it is required to run the following command in the terminal:
+
+```bash
+npm start
+```
+
+The application should open at [http://localhost:3000](http://localhost:3000) in the development mode.
+
 ## Contributing
 
 ## Acknowledgements
