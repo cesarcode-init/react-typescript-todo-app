@@ -18,6 +18,8 @@ This project contains a simple Todo Application.
 
 ## Demonstration
 
+<p><img align="center" src="https://github.com/cesarcode-init/google-search-clone/blob/main/demo.gif" alt="google search clone demonstration" width="500" height="500" /></p>
+
 ## Prerequisites
 
 ## Getting Started
