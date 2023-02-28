@@ -1,65 +1,33 @@
 .form {
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
+    padding-top: 1.1rem;
+    padding-bottom: 1.1rem;
     padding-left: 1.25rem;
     padding-right: 1.25rem;
     border-radius: 0.25rem;
     background: #161b22;
-
     max-width: 28rem;
     position: relative;
     border: 0.2px solid #21262d;
-
 }
-
 
 .input {
     background: #0D1117;
     color: #c9D1d9;
     border: 0.1px solid rgba(146, 142, 142, 0.206);
     display: block;
-
     width: 100%;
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
+    padding-top: 0.65rem;
+    padding-bottom: 0.65rem;
     padding-left: 0.75rem;
     padding-right: 0.75rem;
     box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
     border-radius: 0.25rem;
     outline: none;
-    margin-top: 0.75rem;
-    margin-bottom: 0.75rem;
-
-
-
-}
-
-/* .input {
-    width: 90%;
-    padding: 14px 12px;
-    font-size: 0.9em;
-    border-radius: 3px;
-    border: 0.1px solid var(--black-color-x10);
-    transition: offset 0.2s linear;
-    background: var(--black-color-x11);
-    color: var(--white-color-x0);
-    position: relative;
-    padding: 0.6rem 0.75rem;
-    background: var(--black-color-x12);
-}
-
-.input:focus {
-    outline-width: 2px;
-    outline-style: solid;
-    border-radius: 3px;
-    position: relative;
-    outline-offset: 1px;
-    outline-color: var(--blue-color-x11);
-    transition: all 0.1s ease;
+    font-size: 1rem;
 }
 
 .error {
-    color: var(--red-color-x0);
+    color: #ef4444;
     display: block;
-    margin-top: 15px;
-} */
+    margin-top: 0.75rem;
+}
