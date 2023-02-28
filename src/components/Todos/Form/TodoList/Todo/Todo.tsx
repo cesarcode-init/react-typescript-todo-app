@@ -67,11 +67,12 @@ const Todo = ({ todo }: Props): JSX.Element => {
           </span>
         </div>
 
-        <span className={styles.clicks}>
-          <Delete
-            className={styles.delete}
-            onClick={() => handleDeleteTodo(todo._id)}
-          />
+        <span
+          className={styles.clicks}
+          role="button"
+          onClick={() => handleDeleteTodo(todo._id)}
+        >
+          <Delete className={styles.delete} />
         </span>
       </div>
     </li>
