@@ -1,6 +1,6 @@
-import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai';
+import { MdDelete, MdEdit } from 'react-icons/md';
 
 export const TodoIcons = {
-  Edit: AiOutlineEdit,
-  Delete: AiOutlineDelete,
+  Edit: MdEdit,
+  Delete: MdDelete,
 };
