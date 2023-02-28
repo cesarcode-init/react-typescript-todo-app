@@ -1,7 +1,6 @@
 import { useState, useContext, useEffect } from 'react';
 
 import TodoInput from './TodoInput/TodoInput';
-import TodoList from './TodoList/TodoList';
 
 import { TodosContext } from 'contexts/TodosContext';
 
@@ -91,8 +90,6 @@ const Form = (): JSX.Element => {
       )}
 
       <Tracker />
-
-      {/* <TodoList setError={setError} /> */}
     </form>
   );
 };

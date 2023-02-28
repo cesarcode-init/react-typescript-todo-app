@@ -10,10 +10,9 @@ import { TodosContext } from 'contexts/TodosContext';
 
 type Props = {
   todo: TodoI;
-  setError: React.Dispatch<React.SetStateAction<string | null>>;
 };
 
-const Todo = ({ todo, setError }: Props): JSX.Element => {
+const Todo = ({ todo }: Props): JSX.Element => {
   const context = useContext(TodosContext);
 
   const { Edit, Delete } = TodoIcons;
@@ -28,7 +27,7 @@ const Todo = ({ todo, setError }: Props): JSX.Element => {
   const handleDeleteTodo = (id: number): void => {
     context?.actions.deleteTodo(id);
 
-    setError(null);
+    context?.states.errorState.setError(null);
   };
 
   const handleCompleteTodo = (id: number) => {
