@@ -23,7 +23,7 @@ const Form = (): JSX.Element => {
     setInput(value);
   };
 
-  const handleUpdateTodo = (id: number, todo: string) => {
+  const handleUpdateTodo = (id: string, todo: string) => {
     context?.actions.updateTodo(id, todo);
   };
 

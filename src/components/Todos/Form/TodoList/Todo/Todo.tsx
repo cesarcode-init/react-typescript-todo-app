@@ -19,20 +19,20 @@ const Todo = ({ todo }: Props): JSX.Element => {
 
   const { Edit, Delete } = TodoIcons;
 
-  const handleUpdateToggle = (id: number, todo: string): void => {
+  const handleUpdateToggle = (id: string, todo: string): void => {
     context?.states.editMode.setEditMode({
       status: true,
       payload: { _id: id, todo },
     });
   };
 
-  const handleDeleteTodo = (id: number): void => {
+  const handleDeleteTodo = (id: string): void => {
     context?.actions.deleteTodo(id);
 
     context?.states.errorState.setError(null);
   };
 
-  const handleCompleteTodo = (id: number) => {
+  const handleCompleteTodo = (id: string) => {
     context?.actions.completeTodo(id);
 
     context?.states.editMode.setEditMode({

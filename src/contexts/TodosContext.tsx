@@ -2,6 +2,8 @@ import { createContext, useReducer, useState, useEffect } from 'react';
 
 import { getLocalStorage, setLocalStorage } from 'utils/services/helpers';
 
+import { nanoid } from 'nanoid';
+
 export const TodosContext = createContext<Context>(null);
 
 type Context = {
@@ -27,7 +29,7 @@ type TodosProviderType = {
 type ArrayOfType<T> = T[];
 
 interface Todo {
-  _id: number;
+  _id: string;
   todo: string;
   completed: boolean;
 }
@@ -51,30 +53,30 @@ type Action =
   | {
       type: ACTION_TYPES.UPDATE_TODO;
       payload: {
-        _id: number;
+        _id: string;
         todo: string;
       };
     }
   | {
       type: ACTION_TYPES.DELETE_TODO | ACTION_TYPES.COMPLETE_TODO;
       payload: {
-        _id: number;
+        _id: string;
       };
     };
 
 type EditModeType = {
   status: boolean;
   payload: {
-    _id: number | null;
+    _id: string | null;
     todo: string | null;
   };
 };
 
 interface Actions {
   createTodo: (todo: string) => void;
-  deleteTodo: (id: number) => void;
-  updateTodo: (id: number, todo: string) => void;
-  completeTodo: (id: number) => void;
+  deleteTodo: (id: string) => void;
+  updateTodo: (id: string, todo: string) => void;
+  completeTodo: (id: string) => void;
 }
 
 const initialState: State = [];
@@ -85,7 +87,7 @@ const reducer = (state: State, { type, payload }: Action) => {
       return [
         ...state,
         {
-          _id: Date.now(),
+          _id: nanoid(10),
           todo: payload.todo,
           completed: false,
         },
@@ -155,7 +157,7 @@ export const ProvideTodos = ({ children }: TodosProviderType): JSX.Element => {
     dispatch(action);
   };
 
-  const deleteTodo = (id: number): void => {
+  const deleteTodo = (id: string): void => {
     const action: Action = {
       type: ACTION_TYPES.DELETE_TODO,
       payload: {
@@ -174,7 +176,7 @@ export const ProvideTodos = ({ children }: TodosProviderType): JSX.Element => {
     });
   };
 
-  const updateTodo = (id: number, todo: string): void => {
+  const updateTodo = (id: string, todo: string): void => {
     const action: Action = {
       type: ACTION_TYPES.UPDATE_TODO,
       payload: {
@@ -186,7 +188,7 @@ export const ProvideTodos = ({ children }: TodosProviderType): JSX.Element => {
     dispatch(action);
   };
 
-  const completeTodo = (id: number): void => {
+  const completeTodo = (id: string): void => {
     const action: Action = {
       type: ACTION_TYPES.COMPLETE_TODO,
       payload: { _id: id },
