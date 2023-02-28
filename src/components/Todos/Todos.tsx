@@ -7,7 +7,7 @@ import TodoList from './Form/TodoList/TodoList';
 const Todos = (): JSX.Element => {
   return (
     <div className={styles.Todo}>
-      <h4 className={styles.heading}>Todos</h4>
+      <h4 className={styles.heading}>Todo List</h4>
 
       <Form />
 
