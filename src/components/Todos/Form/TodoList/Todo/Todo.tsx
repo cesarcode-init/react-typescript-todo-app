@@ -1,5 +1,7 @@
 import { useContext } from 'react';
 
+import { motion } from 'framer-motion';
+
 import { TodoI } from 'utils/constants/types';
 
 import styles from '../TodoList.module.css';
@@ -43,7 +45,12 @@ const Todo = ({ todo }: Props): JSX.Element => {
   };
 
   return (
-    <li className={styles.item}>
+    <motion.li
+      className={styles.item}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ stiffness: 10 }}
+    >
       <p
         style={{
           paddingRight: '10px',
@@ -75,7 +82,7 @@ const Todo = ({ todo }: Props): JSX.Element => {
           <Delete className={styles.delete} />
         </span>
       </div>
-    </li>
+    </motion.li>
   );
 };
 
