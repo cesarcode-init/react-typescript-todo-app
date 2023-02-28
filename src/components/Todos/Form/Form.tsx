@@ -85,13 +85,15 @@ const Form = (): JSX.Element => {
 
   return (
     <form onSubmit={handleFormSubmit} className={styles.form}>
-      <TodoInput input={input} action={handleInputChange} />
+      <div>
+        <TodoInput input={input} action={handleInputChange} />
+      </div>
 
       {error && <small className={styles.error}>{error}</small>}
 
       <Tracker />
 
-      <TodoList setError={setError} />
+      {/* <TodoList setError={setError} /> */}
     </form>
   );
 };

@@ -1,8 +1,40 @@
 .form {
-    max-width: 384px;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    border-radius: 0.25rem;
+    background: #161b22;
+
+    max-width: 28rem;
+    position: relative;
+    border: 0.2px solid #21262d;
+
 }
 
+
 .input {
+    background: #0D1117;
+    color: #c9D1d9;
+    border: 0.1px solid rgba(146, 142, 142, 0.206);
+    display: block;
+
+    width: 100%;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    border-radius: 0.25rem;
+    outline: none;
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+
+
+
+}
+
+/* .input {
     width: 90%;
     padding: 14px 12px;
     font-size: 0.9em;
@@ -30,4 +62,4 @@
     color: var(--red-color-x0);
     display: block;
     margin-top: 15px;
-}
+} */
