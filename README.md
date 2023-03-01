@@ -74,6 +74,8 @@ git checkout -b BRANCH_NAME
 
 ## Acknowledgements
 
+- [React Icons](https://react-icons.github.io/react-icons/).
+
 ## License
 
 This project is licensed under the [MIT](https://choosealicense.com/licenses/mit/) license. <br/> Copyright © 2022, Kaissar Mouelhi
