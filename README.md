@@ -54,6 +54,24 @@ The application should open at [http://localhost:3000](http://localhost:3000) in
 
 ## Contributing
 
+To contribute to this project, the following steps are required:
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/cesarcode-init/google-search-clone.git
+```
+
+2. Create a new branch:
+
+```bash
+git checkout -b BRANCH_NAME
+```
+
+3. Make the modifications.
+
+4. Submit a `Pull Request` providing a description of modifications.
+
 ## Acknowledgements
 
 ## License
