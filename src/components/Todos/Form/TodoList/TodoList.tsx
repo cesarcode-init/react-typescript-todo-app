@@ -6,7 +6,7 @@ import { TodosContext } from 'contexts/TodosContext';
 
 import Todo from './Todo/Todo';
 
-const TodoList = (): JSX.Element => {
+const TodoList: React.FC = (): JSX.Element => {
   const context = useContext(TodosContext);
 
   return (

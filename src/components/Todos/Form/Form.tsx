@@ -7,7 +7,7 @@ import { TodosContext } from 'contexts/TodosContext';
 import styles from './Form.module.css';
 import Tracker from './Tracker/Tracker';
 
-const Form = (): JSX.Element => {
+const Form: React.FC = (): JSX.Element => {
   const context = useContext(TodosContext);
 
   const [input, setInput] = useState((): string => {

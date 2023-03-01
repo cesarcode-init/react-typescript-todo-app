@@ -5,7 +5,7 @@ type Props = {
   action: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-const TodoInput = ({ input, action }: Props): JSX.Element => {
+const TodoInput: React.FC<Props> = ({ input, action }): JSX.Element => {
   return (
     <input
       type="text"

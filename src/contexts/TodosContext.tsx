@@ -4,8 +4,6 @@ import { getLocalStorage, setLocalStorage } from 'utils/services/helpers';
 
 import { nanoid } from 'nanoid';
 
-export const TodosContext = createContext<Context>(null);
-
 type Context = {
   state: ArrayOfType<Todo>;
   actions: Actions;
@@ -79,6 +77,8 @@ interface Actions {
   completeTodo: (id: string) => void;
 }
 
+export const TodosContext = createContext<Context>(null);
+
 const initialState: State = [];
 
 const reducer = (state: State, { type, payload }: Action) => {
@@ -120,7 +120,9 @@ const reducer = (state: State, { type, payload }: Action) => {
   }
 };
 
-export const ProvideTodos = ({ children }: TodosProviderType): JSX.Element => {
+export const ProvideTodos: React.FC<TodosProviderType> = ({
+  children,
+}): JSX.Element => {
   const [state, dispatch] = useReducer(reducer, initialState, (): any => {
     return getLocalStorage('todos') ? getLocalStorage('todos') : initialState;
   });

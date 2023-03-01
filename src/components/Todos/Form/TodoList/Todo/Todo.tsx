@@ -14,7 +14,7 @@ type Props = {
   todo: TodoI;
 };
 
-const Todo = ({ todo }: Props): JSX.Element => {
+const Todo: React.FC<Props> = ({ todo }): JSX.Element => {
   const context = useContext(TodosContext);
 
   const { Edit, Delete } = TodoIcons;

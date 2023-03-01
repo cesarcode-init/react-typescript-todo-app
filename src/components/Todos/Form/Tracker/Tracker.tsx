@@ -4,7 +4,7 @@ import styles from './Tracker.module.css';
 
 import { TodosContext } from 'contexts/TodosContext';
 
-const Tracker = () => {
+const Tracker: React.FC = () => {
   const context = useContext(TodosContext);
 
   return (

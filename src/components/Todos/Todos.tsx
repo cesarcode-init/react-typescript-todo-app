@@ -4,7 +4,7 @@ import styles from './Todos.module.css';
 
 import TodoList from './Form/TodoList/TodoList';
 
-const Todos = (): JSX.Element => {
+const Todos: React.FC = (): JSX.Element => {
   return (
     <div className={styles.Todo}>
       <h4 className={styles.heading}>Todo List</h4>
