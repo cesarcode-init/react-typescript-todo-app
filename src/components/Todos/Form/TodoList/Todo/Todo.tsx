@@ -52,9 +52,6 @@ const Todo: React.FC<Props> = ({ todo }): JSX.Element => {
       transition={{ stiffness: 10 }}
     >
       <p
-        style={{
-          paddingRight: '10px',
-        }}
         className={todo.completed ? styles.crossed : styles.uncrossed}
         onDoubleClick={() => handleCompleteTodo(todo._id)}
       >

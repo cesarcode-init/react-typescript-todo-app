@@ -53,6 +53,7 @@
     color: var(--gray-color-x3);
     user-select: none;
     cursor: pointer;
+    margin-right: 10px;
 }
 
 .uncrossed {
@@ -60,6 +61,7 @@
     color: #e2e8f0;
     user-select: none;
     cursor: pointer;
+    margin-right: 10px;
 }
 
 .icons {

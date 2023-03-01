@@ -6,7 +6,7 @@ import TodoList from './Form/TodoList/TodoList';
 
 const Todos: React.FC = (): JSX.Element => {
   return (
-    <div className={styles.Todo}>
+    <div className={styles.container}>
       <h4 className={styles.heading}>Todo List</h4>
 
       <Form />

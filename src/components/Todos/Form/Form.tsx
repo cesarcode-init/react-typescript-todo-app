@@ -79,9 +79,7 @@ const Form: React.FC = (): JSX.Element => {
 
   return (
     <form onSubmit={handleFormSubmit} className={styles.form}>
-      <div>
-        <TodoInput input={input} action={handleInputChange} />
-      </div>
+      <TodoInput input={input} action={handleInputChange} />
 
       {context?.states.errorState.error && (
         <small className={styles.error}>
