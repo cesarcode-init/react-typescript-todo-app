@@ -22,6 +22,11 @@ This project contains a simple Todo Application. It allows users to create, read
 
 ## Prerequisites
 
+Before getting started, it is required to download & install the following:
+
+- [Nodejs](https://nodejs.org/en/download/) LTS or current version works fine. It must be above version 14.
+- [React](https://nodejs.org/en/download/) must be version 18.
+
 ## Getting Started
 
 It is required to clone or fork this project to get started.
