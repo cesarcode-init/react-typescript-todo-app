@@ -1,10 +1,10 @@
 import { useState, useContext, useEffect } from 'react';
 
-import TodoInput from './TodoInput/TodoInput';
+import styles from './Form.module.css';
 
 import { TodosContext } from 'contexts/TodosContext';
 
-import styles from './Form.module.css';
+import TodoInput from './TodoInput/TodoInput';
 import Tracker from './Tracker/Tracker';
 
 const Form: React.FC = (): JSX.Element => {
