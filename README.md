@@ -59,7 +59,7 @@ To contribute to this project, the following steps are required:
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/cesarcode-init/google-search-clone.git
+git clone https://github.com/cesarcode-init/react-typescript-todo-app.git
 ```
 
 2. Create a new branch:
