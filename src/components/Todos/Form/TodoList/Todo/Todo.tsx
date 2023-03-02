@@ -18,48 +18,22 @@ const Todo: React.FC<Props> = ({ todo }): JSX.Element => {
   const { Edit, Delete } = TodoIcons;
 
   const handleUpdateToggle = (id: string, todo: string): void => {
-    if (!context) return;
-
-    const {
-      states: {
-        editMode: { setEditMode },
-      },
-    } = context;
-
-    setEditMode({
+    context?.states.editMode.setEditMode({
       status: true,
       payload: { _id: id, todo },
     });
   };
 
   const handleDeleteTodo = (id: string): void => {
-    if (!context) return;
+    context?.actions.deleteTodo(id);
 
-    const {
-      actions: { deleteTodo },
-      states: {
-        errorState: { setError },
-      },
-    } = context;
-
-    deleteTodo(id);
-
-    setError(null);
+    context?.states.errorState.setError(null);
   };
 
   const handleCompleteTodo = (id: string) => {
-    if (!context) return;
+    context?.actions.completeTodo(id);
 
-    const {
-      actions: { completeTodo },
-      states: {
-        editMode: { setEditMode },
-      },
-    } = context;
-
-    completeTodo(id);
-
-    setEditMode({
+    context?.states.editMode.setEditMode({
       status: false,
       payload: {
         _id: null,

@@ -12,7 +12,6 @@ const TodoInput: React.FC<Props> = ({ input, action }): JSX.Element => {
       className={styles.input}
       value={input}
       onChange={action}
-      autoFocus
     />
   );
 };

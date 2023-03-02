@@ -1,10 +1,10 @@
 import { useState, useContext, useEffect } from 'react';
 
-import styles from './Form.module.css';
+import TodoInput from './TodoInput/TodoInput';
 
 import { TodosContext } from 'contexts/TodosContext';
 
-import TodoInput from './TodoInput/TodoInput';
+import styles from './Form.module.css';
 import Tracker from './Tracker/Tracker';
 
 const Form: React.FC = (): JSX.Element => {
@@ -31,6 +31,7 @@ const Form: React.FC = (): JSX.Element => {
     evt.preventDefault();
 
     if (!input.trim().length) {
+      console.log('err fired!');
       context?.states.errorState.setError('Enter a task.');
       return false;
     }
@@ -39,16 +40,20 @@ const Form: React.FC = (): JSX.Element => {
       context?.states.editMode.editMode.status &&
       context?.states.editMode.editMode.payload._id
     ) {
-      const { states } = context;
-      const { editMode } = states;
+      // handleUpdateTodo(context?.states.editMode.editMode.payload._id!, input);
 
-      handleUpdateTodo(editMode.editMode.payload._id!, input);
+      console.log('submitted!');
+
+      context?.actions.updateTodo(
+        context?.states.editMode.editMode.payload._id,
+        input
+      );
 
       context?.states.errorState.setError(null);
     } else {
-      context?.states.errorState.setError(null);
-
       context?.actions.createTodo(input);
+
+      context?.states.errorState.setError(null);
     }
 
     context?.states.editMode.setEditMode({
@@ -60,8 +65,11 @@ const Form: React.FC = (): JSX.Element => {
   };
 
   useEffect(() => {
-    if (context?.states.editMode.editMode.status) {
-      setInput(context.states.editMode.editMode.payload.todo!);
+    if (
+      !context?.states.errorState.error &&
+      context?.states.editMode.editMode.status
+    ) {
+      setInput(context?.states.editMode.editMode.payload.todo!);
     }
   }, [context?.states.editMode, context?.states.errorState.error]);
 
@@ -71,11 +79,11 @@ const Form: React.FC = (): JSX.Element => {
     }
   }, [context?.states.editMode.editMode.status]);
 
-  useEffect(() => {
-    if (input.trim().length > 0) {
-      context?.states.errorState.setError(null);
-    }
-  }, [input, context?.states.errorState]);
+  // useEffect(() => {
+  //   if (input.trim().length > 0) {
+  //     context?.states.errorState.setError(null);
+  //   }
+  // }, [input, context?.states.errorState]);
 
   return (
     <form onSubmit={handleFormSubmit} className={styles.form}>

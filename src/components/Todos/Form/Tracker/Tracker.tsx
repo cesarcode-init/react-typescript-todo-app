@@ -4,26 +4,21 @@ import styles from './Tracker.module.css';
 
 import { TodosContext } from 'contexts/TodosContext';
 
-const Tracker: React.FC = (): JSX.Element | null => {
+const Tracker: React.FC = () => {
   const context = useContext(TodosContext);
-
-  if (!context) return null;
-
-  const {
-    states: { completedTodos },
-    state,
-  } = context;
 
   return (
     <div className={styles.counter}>
       <small className={styles.blocks}>
-        {state.length === 1
-          ? `${completedTodos.length} out of ${state.length} task`
-          : `${completedTodos.length} out of ${state.length} tasks`}
+        {context?.state.length === 1
+          ? `${context?.states.completedTodos.length} out of ${context?.state.length} task`
+          : `${context?.states.completedTodos.length} out of ${context?.state.length} tasks`}
       </small>
 
       <small className={styles.blocks}>
-        {`${state.length! - completedTodos.length!} left`}
+        {`${
+          context?.state.length! - context?.states.completedTodos.length!
+        } left`}
       </small>
     </div>
   );
