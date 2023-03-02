@@ -16,55 +16,42 @@ const Form: React.FC = (): JSX.Element => {
   });
 
   const handleInputChange = ({
-    target: { value },
+    target,
   }: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = target;
+
     setInput(value);
   };
 
-  const handleUpdateTodo = (id: string, todo: string): void => {
-    if (!context) return;
-
-    const {
-      actions: { updateTodo },
-    } = context;
-
-    updateTodo(id, todo);
+  const handleUpdateTodo = (id: string, todo: string) => {
+    context?.actions.updateTodo(id, todo);
   };
 
-  const handleFormSubmit = (
-    evt: React.FormEvent<HTMLFormElement>
-  ): boolean | void => {
+  const handleFormSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    if (!context) return;
-
-    const {
-      states: {
-        errorState: { setError },
-        editMode: {
-          editMode: { status, payload },
-          setEditMode,
-        },
-      },
-      actions: { createTodo },
-    } = context;
-
     if (!input.trim().length) {
-      setError('Enter a task.');
+      context?.states.errorState.setError('Enter a task.');
       return false;
     }
 
-    if (status && payload._id) {
-      handleUpdateTodo(payload._id!, input);
+    if (
+      context?.states.editMode.editMode.status &&
+      context?.states.editMode.editMode.payload._id
+    ) {
+      const { states } = context;
+      const { editMode } = states;
 
-      setError(null);
+      handleUpdateTodo(editMode.editMode.payload._id!, input);
+
+      context?.states.errorState.setError(null);
     } else {
-      setError(null);
+      context?.states.errorState.setError(null);
 
-      createTodo(input);
+      context?.actions.createTodo(input);
     }
 
-    setEditMode({
+    context?.states.editMode.setEditMode({
       status: false,
       payload: { _id: null, todo: null },
     });
@@ -73,48 +60,22 @@ const Form: React.FC = (): JSX.Element => {
   };
 
   useEffect(() => {
-    if (!context) return;
-
-    const {
-      states: {
-        editMode: {
-          editMode: { status, payload },
-        },
-      },
-    } = context;
-
-    if (status) {
-      setInput(payload.todo!);
+    if (context?.states.editMode.editMode.status) {
+      setInput(context.states.editMode.editMode.payload.todo!);
     }
-  }, [context]);
+  }, [context?.states.editMode, context?.states.errorState.error]);
 
   useEffect(() => {
-    if (!context) return;
-
-    const {
-      states: {
-        editMode: {
-          editMode: { status },
-        },
-      },
-    } = context;
-    if (!status) {
+    if (!context?.states.editMode.editMode.status) {
       setInput('');
     }
-  }, [context]);
+  }, [context?.states.editMode.editMode.status]);
 
   useEffect(() => {
-    if (!context) return;
-
-    const {
-      states: {
-        errorState: { setError },
-      },
-    } = context;
     if (input.trim().length > 0) {
-      setError('');
+      context?.states.errorState.setError(null);
     }
-  }, [input, context]);
+  }, [input, context?.states.errorState]);
 
   return (
     <form onSubmit={handleFormSubmit} className={styles.form}>
