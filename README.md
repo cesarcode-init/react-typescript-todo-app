@@ -1,4 +1,4 @@
-# React TypeScript Todo App
+# Todo Application
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/cesarcode-init/react-typescript-todo-app)
 ![GitHub language count](https://img.shields.io/github/languages/count/cesarcode-init/react-typescript-todo-app)
@@ -6,7 +6,7 @@
 ![GitHub deployments](https://img.shields.io/github/deployments/cesarcode-init/react-typescript-todo-app/github-pages)
 [![GitHub license](https://img.shields.io/github/license/cesarcode-init/react-typescript-todo-app)](https://github.com/cesarcode-init/react-typescript-todo-app/blob/main/LICENSE)
 
-A Todo application which adops the CRUD operations. A user can create, read, update, or delete a todo. It uses local storage to store the user's todos. The application is built using React and TypeScript. It employs CSS modules, too.
+A Todo application which adops the CRUD operations. A user can create, read, update, or delete a todo. It uses local storage to store the user's todos. The application is built using [React](https://reactjs.org/) and [TypeScript](https://www.typescriptlang.org/). It employs CSS modules, too.
 
 ## Table of Contents
 
@@ -25,7 +25,6 @@ A Todo application which adops the CRUD operations. A user can create, read, upd
 Before getting started, it is required to download & install the following:
 
 - [Nodejs](https://nodejs.org/en/download/) LTS or current version works fine. It must be above version 14.
-- [React](https://reactjs.org/) must be version 18.
 
 ## Getting Started
 
