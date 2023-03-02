@@ -13,14 +13,14 @@ const TodoList: React.FC = (): JSX.Element | null => {
 
   const { state } = context;
 
-  return (
+  return state && state.length > 0 ? (
     <ul className={styles.list}>
-      {state && state.length > 0 ? (
-        state.map((todo) => <Todo key={todo._id} todo={todo} />)
-      ) : (
-        <p className={styles.empty}>No tasks yet. Create one!</p>
-      )}
+      {state.map((todo) => (
+        <Todo key={todo._id} todo={todo} />
+      ))}
     </ul>
+  ) : (
+    <p className={styles.empty}>No tasks yet. Create one!</p>
   );
 };
 
