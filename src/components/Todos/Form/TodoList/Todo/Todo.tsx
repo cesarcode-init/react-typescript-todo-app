@@ -32,6 +32,8 @@ const Todo: React.FC<Props> = ({ todo }): JSX.Element | null => {
       status: true,
       payload: { _id: id, todo },
     });
+
+    setError(null);
   };
 
   const handleDeleteTodo = (id: string): void => {
