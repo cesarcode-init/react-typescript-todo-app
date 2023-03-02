@@ -1,8 +1,7 @@
 import { createContext, useReducer, useState, useEffect } from 'react';
+import { nanoid } from 'nanoid';
 
 import { getLocalStorage, setLocalStorage } from 'utils/services/helpers';
-
-import { nanoid } from 'nanoid';
 
 type Context = {
   state: ArrayOfType<Todo>;

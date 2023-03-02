@@ -1,14 +1,12 @@
 import { useContext } from 'react';
-
 import { motion } from 'framer-motion';
-
-import { TodoI } from 'utils/constants/types';
 
 import styles from '../TodoList.module.css';
 
-import { TodoIcons } from 'utils/constants/icons';
-
 import { TodosContext } from 'contexts/TodosContext';
+
+import { TodoI } from 'utils/constants/types';
+import { TodoIcons } from 'utils/constants/icons';
 
 type Props = {
   todo: TodoI;
