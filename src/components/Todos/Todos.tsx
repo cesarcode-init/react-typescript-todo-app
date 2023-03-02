@@ -1,7 +1,7 @@
 import styles from './Todos.module.css';
 
 import Form from './Form/Form';
-import TodoList from './Form/TodoList/TodoList';
+import TodoList from './TodosList/TodoList';
 
 const Todos: React.FC = (): JSX.Element => {
   return (
