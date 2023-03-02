@@ -24,39 +24,46 @@ const Form: React.FC = (): JSX.Element => {
   };
 
   const handleUpdateTodo = (id: string, todo: string) => {
-    context?.actions.updateTodo(id, todo);
+    if (!context) return;
+
+    const {
+      actions: { updateTodo },
+    } = context;
+    updateTodo(id, todo);
   };
 
   const handleFormSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
+    if (!context) return;
+
+    const {
+      states: {
+        errorState: { setError },
+        editMode: {
+          editMode: { status, payload },
+          setEditMode,
+        },
+      },
+      actions: { createTodo },
+    } = context;
+
     if (!input.trim().length) {
-      console.log('err fired!');
-      context?.states.errorState.setError('Enter a task.');
+      setError('Enter a task.');
       return false;
     }
 
-    if (
-      context?.states.editMode.editMode.status &&
-      context?.states.editMode.editMode.payload._id
-    ) {
-      // handleUpdateTodo(context?.states.editMode.editMode.payload._id!, input);
+    if (status && payload._id) {
+      handleUpdateTodo(payload._id!, input);
 
-      console.log('submitted!');
-
-      context?.actions.updateTodo(
-        context?.states.editMode.editMode.payload._id,
-        input
-      );
-
-      context?.states.errorState.setError(null);
+      setError(null);
     } else {
-      context?.actions.createTodo(input);
+      createTodo(input);
 
-      context?.states.errorState.setError(null);
+      setError(null);
     }
 
-    context?.states.editMode.setEditMode({
+    setEditMode({
       status: false,
       payload: { _id: null, todo: null },
     });
@@ -79,19 +86,13 @@ const Form: React.FC = (): JSX.Element => {
     }
   }, [context?.states.editMode.editMode.status]);
 
-  // useEffect(() => {
-  //   if (input.trim().length > 0) {
-  //     context?.states.errorState.setError(null);
-  //   }
-  // }, [input, context?.states.errorState]);
-
   return (
     <form onSubmit={handleFormSubmit} className={styles.form}>
       <TodoInput input={input} action={handleInputChange} />
 
       {context?.states.errorState.error && (
         <small className={styles.error}>
-          {context?.states.errorState.error}
+          {context.states.errorState.error}
         </small>
       )}
 

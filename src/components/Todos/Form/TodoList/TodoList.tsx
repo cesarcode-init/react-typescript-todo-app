@@ -6,13 +6,17 @@ import { TodosContext } from 'contexts/TodosContext';
 
 import Todo from './Todo/Todo';
 
-const TodoList: React.FC = (): JSX.Element => {
+const TodoList: React.FC = (): JSX.Element | null => {
   const context = useContext(TodosContext);
+
+  if (!context) return null;
+
+  const { state } = context;
 
   return (
     <ul className={styles.list}>
-      {context?.state && context?.state.length > 0 ? (
-        context.state.map((todo) => <Todo key={todo._id} todo={todo} />)
+      {state && state.length > 0 ? (
+        state.map((todo) => <Todo key={todo._id} todo={todo} />)
       ) : (
         <p className={styles.empty}>No tasks yet. Create one!</p>
       )}
