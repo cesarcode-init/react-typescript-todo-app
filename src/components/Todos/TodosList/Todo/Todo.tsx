@@ -5,11 +5,11 @@ import styles from '../TodoList.module.css';
 
 import { TodosContext } from 'contexts/TodosContext';
 
-import { TodoI } from 'utils/constants/types';
+import { TodoInterface } from 'utils/constants/types';
 import { TodoIcons } from 'utils/constants/icons';
 
 type Props = {
-  todo: TodoI;
+  todo: TodoInterface;
 };
 
 const Todo: React.FC<Props> = ({ todo }): JSX.Element | null => {

@@ -3,18 +3,25 @@ import { nanoid } from 'nanoid';
 
 import { getLocalStorage, setLocalStorage } from 'utils/services/helpers';
 
+import {
+  ArrayOfType,
+  DispatchSetStateActionType,
+  StringOrNullType,
+  TodoInterface,
+} from 'utils/constants/types';
+
 type Context = {
-  state: ArrayOfType<Todo>;
+  state: ArrayOfType<TodoInterface>;
   actions: Actions;
   states: {
     editMode: {
       editMode: EditModeType;
-      setEditMode: React.Dispatch<React.SetStateAction<EditModeType>>;
+      setEditMode: DispatchSetStateActionType<EditModeType>;
     };
-    completedTodos: ArrayOfType<Todo>;
+    completedTodos: ArrayOfType<TodoInterface>;
     errorState: {
-      error: string | null;
-      setError: React.Dispatch<React.SetStateAction<null | string>>;
+      error: StringOrNullType;
+      setError: DispatchSetStateActionType<StringOrNullType>;
     };
   };
 } | null;
@@ -23,14 +30,6 @@ type TodosProviderType = {
   children: React.ReactNode;
 };
 
-type ArrayOfType<T> = T[];
-
-interface Todo {
-  _id: string;
-  todo: string;
-  completed: boolean;
-}
-
 const enum ACTION_TYPES {
   ADD_TODO,
   DELETE_TODO,
@@ -38,7 +37,7 @@ const enum ACTION_TYPES {
   COMPLETE_TODO,
 }
 
-type State = ArrayOfType<Todo>;
+type State = ArrayOfType<TodoInterface>;
 
 type Action =
   | {
@@ -64,8 +63,8 @@ type Action =
 type EditModeType = {
   status: boolean;
   payload: {
-    _id: string | null;
-    todo: string | null;
+    _id: StringOrNullType;
+    todo: StringOrNullType;
   };
 };
 
@@ -138,13 +137,13 @@ export const ProvideTodos: React.FC<TodosProviderType> = ({
   });
 
   const [completedTodos, setCompletedTodos] = useState(
-    (): ArrayOfType<Todo> => {
-      const ret: ArrayOfType<Todo> = [];
+    (): ArrayOfType<TodoInterface> => {
+      const ret: ArrayOfType<TodoInterface> = [];
       return ret;
     }
   );
 
-  const [error, setError] = useState<null | string>((): null => {
+  const [error, setError] = useState<StringOrNullType>((): null => {
     const ret = null;
     return ret;
   });
