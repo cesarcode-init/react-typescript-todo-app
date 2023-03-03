@@ -73,7 +73,7 @@ const Todo: React.FC<Props> = ({ todo }): JSX.Element | null => {
           <span
             role="button"
             onClick={() => handleUpdateToggle(todo._id, todo.todo)}
-            className={todo.completed ? styles.disabled_block : styles.clicks}
+            className={todo.completed ? styles.disabled_block : styles.buttons}
           >
             <Edit
               className={todo.completed ? styles.disabled_edit : styles.edit}
@@ -82,7 +82,7 @@ const Todo: React.FC<Props> = ({ todo }): JSX.Element | null => {
         </div>
 
         <span
-          className={styles.clicks}
+          className={styles.buttons}
           role="button"
           onClick={() => handleDeleteTodo(todo._id)}
         >

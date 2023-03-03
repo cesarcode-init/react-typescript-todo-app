@@ -2,7 +2,7 @@
     display: block;
     margin-top: 20px;
     font-size: small;
-    color: #d1d5db;
+    color: var(--text-gray-300);
     user-select: none;
 }
 

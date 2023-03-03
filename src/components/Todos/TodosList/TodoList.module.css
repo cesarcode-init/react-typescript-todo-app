@@ -1,15 +1,25 @@
 /* ListTasks Component */
 
+.list,
+.item,
+.icons {
+    display: flex;
+}
+
+.buttons,
+.disabled_block {
+    padding: 0.1em;
+}
+
 .list {
     padding: 0;
     max-width: 25rem;
-    display: flex;
     flex-direction: column-reverse;
     margin: 1rem auto;
 }
 
 .empty {
-    color: #d1d5db;
+    color: var(--text-gray-300);
     font-size: 0.9em;
     margin: 2rem auto;
 }
@@ -17,15 +27,13 @@
 /* Task Component */
 
 .item {
-    background: #161b22;
-    margin-bottom: 8px;
-    padding-left: 16px;
-    padding-right: 16px;
+    background: var(--secondary-background-color);
+    margin-bottom: 0.5rem;
+    padding: 0 1rem;
     list-style: none;
     position: relative;
-    border-radius: 4px;
-    min-height: 50px;
-    display: flex;
+    border-radius: 0.25rem;
+    min-height: 3.125rem;
     align-items: center;
     justify-content: space-between;
     word-break: break-all;
@@ -38,8 +46,8 @@
     top: 0;
     right: 0;
     bottom: 0;
-    border: 0.5px solid var(--blue-color-x9);
-    border-radius: 3px;
+    border: 0.031rem solid var(--blue-color-x9);
+    border-radius: 0.188rem;
     opacity: 0;
     transition: opacity 0.2s linear;
     pointer-events: none;
@@ -49,36 +57,37 @@
     opacity: .7;
 }
 
+.crossed,
+.uncrossed {
+    text-align: left;
+    margin-right: 0.625rem;
+    user-select: none;
+}
+
 .crossed {
     text-decoration: line-through;
     color: var(--gray-color-x3);
-    user-select: none;
     cursor: pointer;
-    margin-right: 10px;
 }
 
 .uncrossed {
     text-decoration: none;
-    color: #e2e8f0;
-    user-select: none;
+    color: var(--text-gray-100);
     cursor: pointer;
-    margin-right: 10px;
 }
 
 .icons {
-    display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 0.313rem;
 }
 
 .icons span:first-of-type,
 .icons span:last-of-type {
-    width: 25px;
-    height: 25px;
-    border-radius: 3px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 1.563rem;
+    height: 1.563rem;
+    border-radius: 0.188rem;
+    display: grid;
+    place-content: center;
     transition: background 0.1s ease;
     cursor: pointer;
 }
@@ -89,25 +98,23 @@
 }
 
 .delete {
-    color: var(--red-color-x1);
+    color: var(--text-red-300);
 }
 
 .edit {
     color: var(--blue-color-x10);
 }
 
-.clicks {
-    padding: 0.1em;
+.buttons {
     background: var(--black-color-x8);
     outline: none;
 }
 
-.clicks:hover {
+.buttons:hover {
     background: var(--black-color-x9)
 }
 
 .disabled_block {
-    padding: 0.1em;
     background: var(--gray-color-x4);
     pointer-events: none;
     cursor: not-allowed;

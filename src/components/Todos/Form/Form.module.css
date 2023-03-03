@@ -1,28 +1,30 @@
+.form,
+.input {
+    border-radius: 0.25rem;
+}
+
 .form {
     padding: 1.1rem 1.25rem;
-    border-radius: 0.25rem;
-    background: #161b22;
+    background: var(--secondary-background-color);
     max-width: 25rem;
     position: relative;
-    border: 0.2px solid #21262d;
+    border: 0.013rem solid #21262d;
     margin: 0 auto;
 }
 
 .input {
-    background: #0D1117;
+    background: var(--primary-background-color);
     color: #c9D1d9;
-    border: 0.1px solid #928e8e35;
+    border: 0.006rem solid #928e8e35;
     display: block;
     width: 100%;
     padding: 0.65rem 0.75rem;
-    box-shadow: 0 1px 2px 0 #0000000d;
-    border-radius: 0.25rem;
     outline: none;
     font-size: 1rem;
 }
 
 .error {
-    color: #ef4444;
+    color: var(--text-red-500);
     display: block;
     margin-top: 0.75rem;
     text-align: left;
