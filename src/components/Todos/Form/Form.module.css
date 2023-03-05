@@ -1,5 +1,5 @@
 .form,
-.input {
+.inputContainer {
     border-radius: 0.25rem;
 }
 
@@ -12,15 +12,40 @@
     margin: 0 auto;
 }
 
-.input {
+.inputContainer {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    /* border: 1px solid red; */
     background: var(--primary-background-color);
-    color: #c9D1d9;
     border: 0.006rem solid #928e8e35;
+    padding: 0 0.1rem;
+}
+
+.inputIcon {
+    font-size: 1.2rem;
+    margin: 0 0.5rem;
+    color: var(--gray-color-x5);
+
+    height: 100%;
+    display: grid;
+    place-content: center;
+}
+
+.input {
+    background: none;
+    color: #c9D1d9;
+    border: none;
     display: block;
     width: 100%;
-    padding: 0.65rem 0.75rem;
+    padding: 0.65rem 0.35rem;
     outline: none;
     font-size: 1rem;
+    /* border: 1px solid; */
+}
+
+.input::placeholder {
+    font-size: 0.775rem;
 }
 
 .error {
