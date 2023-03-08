@@ -1,8 +1,7 @@
 /* ListTasks Component */
 
 .list,
-.item,
-.icons {
+.item {
     display: flex;
 }
 
@@ -29,7 +28,8 @@
 .item {
     background: var(--secondary-background-color);
     margin-bottom: 0.5rem;
-    padding: 0 1rem;
+    padding-left: 1rem;
+    padding-right: 0.5rem;
     list-style: none;
     position: relative;
     border-radius: 0.25rem;
@@ -79,6 +79,7 @@
 .icons {
     align-items: center;
     gap: 0.313rem;
+    display: flex;
 }
 
 .icons span:first-of-type,
@@ -122,4 +123,25 @@
 
 .disabled_edit {
     color: var(--gray-color-x5)
+}
+
+.optionsBtn {
+    font-size: 1.125rem;
+    color: var(--text-gray-300);
+    /* border: 1px solid white; */
+    display: grid;
+    place-content: center;
+    cursor: pointer;
+    position: relative;
+
+
+    width: 1.563rem;
+    height: 1.563rem;
+    border-radius: 50%;
+
+    transition: background 0.1s ease;
+}
+
+.optionsBtn:hover {
+    background: rgba(90, 90, 90, 0.409);
 }

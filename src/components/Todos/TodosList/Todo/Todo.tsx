@@ -13,6 +13,8 @@ type Props = {
 };
 
 const Todo: React.FC<Props> = ({ todo }): JSX.Element | null => {
+  const { Options } = TodoIcons;
+
   const context = useContext(TodosContext);
 
   if (!context) return null;
@@ -68,7 +70,13 @@ const Todo: React.FC<Props> = ({ todo }): JSX.Element | null => {
         {todo.todo}
       </p>
 
-      <div className={styles.icons}>
+      <div>
+        <span role="button" className={styles.optionsBtn}>
+          <Options />
+        </span>
+      </div>
+
+      {/* <div className={styles.icons}>
         <div style={{ cursor: todo.completed ? 'not-allowed' : '' }}>
           <span
             role="button"
@@ -88,7 +96,7 @@ const Todo: React.FC<Props> = ({ todo }): JSX.Element | null => {
         >
           <Delete className={styles.delete} />
         </span>
-      </div>
+      </div> */}
     </motion.li>
   );
 };
