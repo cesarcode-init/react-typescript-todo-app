@@ -70,6 +70,8 @@
     height: 100%;
     border-radius: 50%;
     transition: background 0.1s ease;
+    border: none;
+    background: none;
 }
 
 .options__button:hover {
@@ -81,6 +83,7 @@
     border: 1px solid white;
     width: 8.5rem;
     right: 0;
+    top: 23px;
     color: var(--text-gray-300);
     padding: 0.4rem;
     border-radius: 0.25rem;

@@ -100,13 +100,12 @@ const Todo: React.FC<Props> = ({ todo }): JSX.Element | null => {
       </p>
 
       <div ref={optionsReference} className={styles.options}>
-        <span
-          role="button"
+        <button
           className={styles.options__button}
           onClick={handleOptionsToggle}
         >
           <Options />
-        </span>
+        </button>
 
         {optionsToggle && (
           <div className={styles.options__table}>
