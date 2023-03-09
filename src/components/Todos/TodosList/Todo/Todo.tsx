@@ -16,7 +16,7 @@ const Todo: React.FC<Props> = ({ todo }): JSX.Element | null => {
   const { Options } = TodoIcons;
 
   const [optionsToggle, setOptionsToggle] = useState((): boolean => {
-    const ret = true;
+    const ret = false;
     return ret;
   });
 
@@ -24,7 +24,23 @@ const Todo: React.FC<Props> = ({ todo }): JSX.Element | null => {
 
   const context = useContext(TodosContext);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    const effect = ({ target }: MouseEvent) => {
+      if (
+        optionsToggle &&
+        optionsReference.current &&
+        !optionsReference.current.contains(target as Node)
+      ) {
+        setOptionsToggle(false);
+      }
+    };
+
+    document.addEventListener('mousedown', effect);
+
+    return () => {
+      document.removeEventListener('mousedown', effect);
+    };
+  }, [optionsToggle]);
 
   if (!context) return null;
 
@@ -65,6 +81,10 @@ const Todo: React.FC<Props> = ({ todo }): JSX.Element | null => {
     });
   };
 
+  const handleOptionsToggle = () => {
+    setOptionsToggle(!optionsToggle);
+  };
+
   return (
     <motion.li
       className={styles.item}
@@ -80,20 +100,34 @@ const Todo: React.FC<Props> = ({ todo }): JSX.Element | null => {
       </p>
 
       <div ref={optionsReference} className={styles.optionsContainer}>
-        <span role="button" className={styles.optionsBtn}>
+        <span
+          role="button"
+          className={styles.optionsBtn}
+          onClick={handleOptionsToggle}
+        >
           <Options />
         </span>
 
         {optionsToggle && (
           <div className={styles.optionsTable}>
-            <span role="button" className={styles.btn}>
-              <span className={styles.editbtn}>
-                <Edit />
+            <span className={todo.completed && styles.notAllowedStatus}>
+              <span
+                role="button"
+                className={todo.completed ? styles.disabled_block : styles.btn}
+                onClick={() => handleUpdateToggle(todo._id, todo.todo)}
+              >
+                <span className={styles.editbtn}>
+                  <Edit />
+                </span>
+                <span className={styles.buttonText}>Edit</span>
               </span>
-              <span className={styles.buttonText}>Edit</span>
             </span>
 
-            <span role="button" className={styles.btn}>
+            <span
+              role="button"
+              className={styles.btn}
+              onClick={() => handleDeleteTodo(todo._id)}
+            >
               <span>
                 <Delete />
               </span>
@@ -102,28 +136,6 @@ const Todo: React.FC<Props> = ({ todo }): JSX.Element | null => {
           </div>
         )}
       </div>
-
-      {/* <div className={styles.icons}>
-        <div style={{ cursor: todo.completed ? 'not-allowed' : '' }}>
-          <span
-            role="button"
-            onClick={() => handleUpdateToggle(todo._id, todo.todo)}
-            className={todo.completed ? styles.disabled_block : styles.buttons}
-          >
-            <Edit
-              className={todo.completed ? styles.disabled_edit : styles.edit}
-            />
-          </span>
-        </div>
-
-        <span
-          className={styles.buttons}
-          role="button"
-          onClick={() => handleDeleteTodo(todo._id)}
-        >
-          <Delete className={styles.delete} />
-        </span>
-      </div> */}
     </motion.li>
   );
 };
