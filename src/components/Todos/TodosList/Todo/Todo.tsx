@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 
 import styles from '../TodoList.module.css';
@@ -15,7 +15,16 @@ type Props = {
 const Todo: React.FC<Props> = ({ todo }): JSX.Element | null => {
   const { Options } = TodoIcons;
 
+  const [optionsToggle, setOptionsToggle] = useState((): boolean => {
+    const ret = true;
+    return ret;
+  });
+
+  const optionsReference = useRef<null | HTMLDivElement>(null);
+
   const context = useContext(TodosContext);
+
+  useEffect(() => {}, []);
 
   if (!context) return null;
 
@@ -70,10 +79,28 @@ const Todo: React.FC<Props> = ({ todo }): JSX.Element | null => {
         {todo.todo}
       </p>
 
-      <div>
+      <div ref={optionsReference} className={styles.optionsContainer}>
         <span role="button" className={styles.optionsBtn}>
           <Options />
         </span>
+
+        {optionsToggle && (
+          <div className={styles.optionsTable}>
+            <span role="button" className={styles.btn}>
+              <span className={styles.editbtn}>
+                <Edit />
+              </span>
+              <span className={styles.buttonText}>Edit</span>
+            </span>
+
+            <span role="button" className={styles.btn}>
+              <span>
+                <Delete />
+              </span>
+              <span className={styles.buttonText}>Delete</span>
+            </span>
+          </div>
+        )}
       </div>
 
       {/* <div className={styles.icons}>
