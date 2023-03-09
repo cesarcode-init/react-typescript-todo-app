@@ -110,7 +110,7 @@ const Todo: React.FC<Props> = ({ todo }): JSX.Element | null => {
 
         {optionsToggle && (
           <div className={styles.optionsTable}>
-            <span className={todo.completed && styles.notAllowedStatus}>
+            <span className={todo.completed ? styles.notAllowedStatus : ''}>
               <span
                 role="button"
                 className={todo.completed ? styles.disabled_block : styles.btn}

@@ -139,7 +139,7 @@
 .disabled_block {
     background: rgba(90, 90, 90, 0.409);
     margin-bottom: 0.2rem;
-
+    pointer-events: none;
     text-align: left;
     display: flex;
     gap: 0.6rem;
@@ -152,4 +152,5 @@
 
 .notAllowedStatus {
     cursor: not-allowed;
+
 }
