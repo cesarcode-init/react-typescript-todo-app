@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 
-import styles from '../TodoList.module.css';
+import styles from './Todo.module.css';
 
 import { TodosContext } from 'contexts/TodosContext';
 
@@ -87,44 +87,46 @@ const Todo: React.FC<Props> = ({ todo }): JSX.Element | null => {
 
   return (
     <motion.li
-      className={styles.item}
+      className={styles.todo}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ stiffness: 10 }}
     >
       <p
-        className={todo.completed ? styles.crossed : styles.uncrossed}
+        className={todo.completed ? styles.completed : styles.incomplete}
         onDoubleClick={() => handleCompleteTodo(todo._id)}
       >
         {todo.todo}
       </p>
 
-      <div ref={optionsReference} className={styles.optionsContainer}>
+      <div ref={optionsReference} className={styles.options}>
         <span
           role="button"
-          className={styles.optionsBtn}
+          className={styles.options__button}
           onClick={handleOptionsToggle}
         >
           <Options />
         </span>
 
         {optionsToggle && (
-          <div className={styles.optionsTable}>
-            <span className={todo.completed ? styles.notAllowedStatus : ''}>
+          <div className={styles.options__table}>
+            <span className={todo.completed ? styles.button__inaccessible : ''}>
               <span
                 role="button"
                 aria-label="edit button"
                 tabIndex={0}
-                className={todo.completed ? styles.disabled_block : styles.btn}
+                className={
+                  todo.completed ? styles.button__disabled : styles.buttons
+                }
                 onClick={() => {
                   handleUpdateToggle(todo._id, todo.todo);
                   setOptionsToggle(false);
                 }}
               >
-                <span className={styles.editbtn}>
+                <span>
                   <Edit />
                 </span>
-                <span className={styles.buttonText}>Edit</span>
+                <span className={styles.buttons__text}>Edit</span>
               </span>
             </span>
 
@@ -132,7 +134,7 @@ const Todo: React.FC<Props> = ({ todo }): JSX.Element | null => {
               role="button"
               aria-label="delete button"
               tabIndex={0}
-              className={styles.btn}
+              className={styles.buttons}
               onClick={() => {
                 handleDeleteTodo(todo._id);
                 setOptionsToggle(false);
@@ -141,7 +143,7 @@ const Todo: React.FC<Props> = ({ todo }): JSX.Element | null => {
               <span>
                 <Delete />
               </span>
-              <span className={styles.buttonText}>Delete</span>
+              <span className={styles.buttons__text}>Delete</span>
             </span>
           </div>
         )}
