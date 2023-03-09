@@ -113,8 +113,13 @@ const Todo: React.FC<Props> = ({ todo }): JSX.Element | null => {
             <span className={todo.completed ? styles.notAllowedStatus : ''}>
               <span
                 role="button"
+                aria-label="edit button"
+                tabIndex={0}
                 className={todo.completed ? styles.disabled_block : styles.btn}
-                onClick={() => handleUpdateToggle(todo._id, todo.todo)}
+                onClick={() => {
+                  handleUpdateToggle(todo._id, todo.todo);
+                  setOptionsToggle(false);
+                }}
               >
                 <span className={styles.editbtn}>
                   <Edit />
@@ -125,8 +130,13 @@ const Todo: React.FC<Props> = ({ todo }): JSX.Element | null => {
 
             <span
               role="button"
+              aria-label="delete button"
+              tabIndex={0}
               className={styles.btn}
-              onClick={() => handleDeleteTodo(todo._id)}
+              onClick={() => {
+                handleDeleteTodo(todo._id);
+                setOptionsToggle(false);
+              }}
             >
               <span>
                 <Delete />
