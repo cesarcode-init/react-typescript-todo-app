@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect, useRef } from 'react';
+import React, { useContext, useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 
 import styles from './Todo.module.css';
@@ -85,6 +85,22 @@ const Todo: React.FC<Props> = ({ todo }): JSX.Element | null => {
     setOptionsToggle(!optionsToggle);
   };
 
+  const handleEnterAccesibility = (
+    { target, key }: React.KeyboardEvent<HTMLSpanElement>,
+    id: string,
+    todo?: string
+  ): void => {
+    const innerTargetText = (target as HTMLSpanElement).innerText;
+
+    if (key === 'Enter' && innerTargetText === 'Delete') {
+      handleDeleteTodo(id);
+    }
+
+    if (key === 'Enter' && innerTargetText === 'Edit') {
+      handleUpdateToggle(id, todo!);
+    }
+  };
+
   return (
     <motion.li
       className={styles.todo}
@@ -121,6 +137,7 @@ const Todo: React.FC<Props> = ({ todo }): JSX.Element | null => {
                   handleUpdateToggle(todo._id, todo.todo);
                   setOptionsToggle(false);
                 }}
+                onKeyUp={(e) => handleEnterAccesibility(e, todo._id, todo.todo)}
               >
                 <span>
                   <Edit />
@@ -140,6 +157,7 @@ const Todo: React.FC<Props> = ({ todo }): JSX.Element | null => {
                 handleDeleteTodo(todo._id);
                 setOptionsToggle(false);
               }}
+              onKeyUp={(e) => handleEnterAccesibility(e, todo._id)}
             >
               <span>
                 <Delete />
