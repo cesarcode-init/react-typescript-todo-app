@@ -106,10 +106,6 @@
     user-select: none;
 }
 
-.buttons:first-of-type {
-    margin-bottom: 0.3rem;
-}
-
 .buttons:hover {
     background: rgba(90, 90, 90, 0.221);
 }
@@ -130,4 +126,12 @@
 
 .button__inaccessible {
     cursor: not-allowed;
+}
+
+hr {
+
+    border-bottom: 0.1px solid white;
+    border-color: rgba(120, 120, 120, 0.175);
+    margin: 0.3rem 0;
+    padding: 0;
 }

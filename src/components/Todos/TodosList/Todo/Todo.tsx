@@ -129,6 +129,8 @@ const Todo: React.FC<Props> = ({ todo }): JSX.Element | null => {
               </span>
             </span>
 
+            <hr />
+
             <span
               role="button"
               aria-label="delete button"
