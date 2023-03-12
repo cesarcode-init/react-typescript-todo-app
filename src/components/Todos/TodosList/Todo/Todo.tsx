@@ -1,4 +1,10 @@
-import React, { useContext, useState, useEffect, useRef } from 'react';
+import React, {
+  useContext,
+  useState,
+  useEffect,
+  useRef,
+  ChangeEvent,
+} from 'react';
 import { motion } from 'framer-motion';
 
 import styles from './Todo.module.css';
@@ -16,6 +22,11 @@ const Todo: React.FC<Props> = ({ todo }): JSX.Element | null => {
   const { Options } = TodoIcons;
 
   const [optionsToggle, setOptionsToggle] = useState((): boolean => {
+    const ret = false;
+    return ret;
+  });
+
+  const [completed, setCompleted] = useState((): boolean => {
     const ret = false;
     return ret;
   });
@@ -85,6 +96,13 @@ const Todo: React.FC<Props> = ({ todo }): JSX.Element | null => {
     setOptionsToggle(!optionsToggle);
   };
 
+  const handleCompletedChange = (
+    { target: { checked } }: ChangeEvent<HTMLInputElement>,
+    id: string
+  ) => {
+    handleCompleteTodo(id);
+  };
+
   const handleEnterAccesibility = (
     { target, key }: React.KeyboardEvent<HTMLSpanElement>,
     id: string,
@@ -108,12 +126,21 @@ const Todo: React.FC<Props> = ({ todo }): JSX.Element | null => {
       animate={{ opacity: 1 }}
       transition={{ stiffness: 10 }}
     >
-      <p
-        className={todo.completed ? styles.completed : styles.incomplete}
-        onDoubleClick={() => handleCompleteTodo(todo._id)}
-      >
-        {todo.todo}
-      </p>
+      <div className={styles.todo__input}>
+        <input
+          type="checkbox"
+          id={todo._id}
+          checked={todo.completed}
+          onChange={(e) => handleCompletedChange(e, todo._id)}
+        />
+
+        <label
+          className={todo.completed ? styles.completed : styles.incomplete}
+          htmlFor={todo._id}
+        >
+          {todo.todo}
+        </label>
+      </div>
 
       <div ref={optionsReference} className={styles.options}>
         <button

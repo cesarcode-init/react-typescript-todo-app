@@ -1,5 +1,6 @@
 .todo,
-.buttons {
+.buttons,
+.todo__input {
     display: flex;
 }
 
@@ -33,6 +34,11 @@
 
 .todo:hover.todo::before {
     opacity: .7;
+}
+
+.todo__input {
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .completed,
