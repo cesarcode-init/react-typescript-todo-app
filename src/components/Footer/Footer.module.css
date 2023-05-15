@@ -1,0 +1,32 @@
+.footer {
+    font-weight: 500;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    color: rgb(107 114 128);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(120, 120, 120, 0.313);
+    height: 33px;
+    padding: 0.5rem 1.5rem;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    background: #0D1117;
+    font-family: 'Roboto', sans-serif;
+}
+
+.footer a {
+    color: rgb(107 114 128);
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+.links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
